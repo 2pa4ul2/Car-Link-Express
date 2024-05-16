@@ -1,0 +1,95 @@
+*{
+    font-family: "Montserrat", sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #FFFAF4;
+}
+
+main{
+    width: 50% auto;
+}
+
+
+header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    height: 80px;
+    z-index: 1000;
+}
+        .logo{
+            height: 40px;
+        }
+
+        ul{
+            list-style-type: none;
+            width: 40%;
+            font-size: 16px;
+            font-weight: 400;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-button {
+            text-decoration: none;
+            color: black;
+            margin: 0;
+            padding: 10px 30px;
+        }
+
+        .nav-button:hover{
+            font-weight: 600;
+            color: black;
+            background-color: rgba(31, 31, 31, 0.134);
+            border-radius: 10px;
+        }
+
+        .login-btn{
+            list-style-type: none;
+            text-decoration: none;
+            padding: 10px 30px;
+        }
+
+.tagline{
+    color: #5B504C;
+    width: 100%;
+    margin: 0 0 0 0;
+    font-size: 42px;
+    text-wrap: wrap;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+        h1{
+            font-weight: 500;
+            margin: 10px 0 20px 0;
+            text-align: center;
+        }
+
+        p{
+            width: 40%;
+            font-weight: 300;
+            font-size: 18px;
+            margin: 0;
+            text-align: center;
+            margin: 0 0 30px 0;
+        }
+        .image-container{
+            display: flex;
+            justify-content: center;
+        }
+        .porche{
+            width: 70%;
+            border-radius: 25px;
+        }
+        
