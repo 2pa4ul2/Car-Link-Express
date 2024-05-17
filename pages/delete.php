@@ -1,12 +1,3 @@
-<?php
-    require "db.php";
-    $query = "SELECT * FROM supplier, category, product";
-    $stmt =  $pdo -> prepare($query);
-    $stmt -> execute();
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +42,7 @@
                 <div class="content">
                         <h3>Supplier</h3>
                         <div>
-                            <form action="../includes/update.php" name="form_type" method="post">
+                            <form action="../includes/delete.php" name="form_type" method="post">
                                 <label for="supplier_name">Supplier Name</label>
                                 <input type="text" name="supplier_name" placeholder="Enter Supplier Name"><br>
                                 <label for="contact_person">Contact Person</label>
@@ -67,7 +58,7 @@
                 <div class="content">
                     <h3>Category</h3>
                     <div>
-                        <form action="../includes/update.php" method="post">
+                        <form action="../includes/delete.php" method="post">
                             <label for="category_name">Supplier Name</label>
                             <input type="text" name="category_name" placeholder="Category name"><br>
                             <button>Submit</button>
@@ -79,13 +70,17 @@
                 <div class="content">
                     <h3>Product</h3>
                     <div>
-                        <form action="../includes/update.php" method="post">
+                        <form action="../includes/delete.php" method="post">
                             <label for="product_name">Product Name</label>
                             <input type="text" name="product_name" placeholder="Enter Product Name">
                             <label for="supplier_id">Supplier Id</label>
                             <select name="supplier_id" id="">
                                 <option value="None">None</option>
                                 <?php
+                                    require_once "../includes/db.php";
+                                    $query = "SELECT * FROM supplier";
+                                    $stmt = $pdo -> prepare($query);
+                                    $stmt -> execute();
                                     while($row = $stmt -> fetch()){
                                         echo "<option value='" . $row['supplier_id'] . "'>" . $row['supplier_id'] . "</option>";
                                     }
@@ -96,6 +91,10 @@
                             <select name="category_id" id="">
                                 <option value="None">None</option>
                                 <?php
+                                    require_once "../includes/db.php";
+                                    $query = "SELECT * FROM category";
+                                    $stmt = $pdo -> prepare($query);
+                                    $stmt -> execute();
                                     while($row = $stmt -> fetch()){
                                         echo "<option value='" . $row['category_id'] . "'>" . $row['category_id'] . "</option>";
                                     }
