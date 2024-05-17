@@ -154,3 +154,7 @@ main{
     border-radius: 25px;
     transition: all .3s ease-in-out
 }
+
+select{
+    color: black;
+}

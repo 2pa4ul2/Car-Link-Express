@@ -16,9 +16,8 @@
                 <ul>
                         <li><a class="nav-button" href="index.php">Home</a></li>
                         <li><a class="nav-button" href="create.php">Create</a></li>
-                        <li><a class="nav-button" href="#">View</a></li>
-                        <li><a class="nav-button" href="#">Update</a></li>
-                        <li><a class="nav-button" href="#">Delete</a></li>
+                        <li><a class="nav-button" href="#">Display</a></li>
+                        <li><a class="nav-button" href="#">Query</a></li>
                 </ul>
                 <a class="login-btn" href="">Log in</a>
             </nav>

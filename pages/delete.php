@@ -6,6 +6,7 @@
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +51,7 @@
                 <div class="content">
                         <h3>Supplier</h3>
                         <div>
-                            <form action="../includes/formhandler.php" name="form_type" method="post">
+                            <form action="../includes/update.php" name="form_type" method="post">
                                 <label for="supplier_name">Supplier Name</label>
                                 <input type="text" name="supplier_name" placeholder="Enter Supplier Name"><br>
                                 <label for="contact_person">Contact Person</label>
@@ -66,7 +67,7 @@
                 <div class="content">
                     <h3>Category</h3>
                     <div>
-                        <form action="../includes/formhandler.php" method="post">
+                        <form action="../includes/update.php" method="post">
                             <label for="category_name">Supplier Name</label>
                             <input type="text" name="category_name" placeholder="Category name"><br>
                             <button>Submit</button>
@@ -78,7 +79,7 @@
                 <div class="content">
                     <h3>Product</h3>
                     <div>
-                        <form action="../includes/formhandler.php" method="post">
+                        <form action="../includes/update.php" method="post">
                             <label for="product_name">Product Name</label>
                             <input type="text" name="product_name" placeholder="Enter Product Name">
                             <label for="supplier_id">Supplier Id</label>

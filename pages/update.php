@@ -1,11 +1,3 @@
-<?php
-    require "db.php";
-    $query = "SELECT * FROM supplier, category, product";
-    $stmt =  $pdo -> prepare($query);
-    $stmt -> execute();
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,6 +77,10 @@
                             <select name="supplier_id" id="">
                                 <option value="None">None</option>
                                 <?php
+                                    require_once "../includes/db.php";
+                                    $query = "SELECT * FROM supplier";
+                                    $stmt = $pdo -> prepare($query);
+                                    $stmt -> execute();
                                     while($row = $stmt -> fetch()){
                                         echo "<option value='" . $row['supplier_id'] . "'>" . $row['supplier_id'] . "</option>";
                                     }
@@ -95,6 +91,10 @@
                             <select name="category_id" id="">
                                 <option value="None">None</option>
                                 <?php
+                                    require_once "../includes/db.php";
+                                    $query = "SELECT * FROM category";
+                                    $stmt = $pdo -> prepare($query);
+                                    $stmt -> execute();
                                     while($row = $stmt -> fetch()){
                                         echo "<option value='" . $row['category_id'] . "'>" . $row['category_id'] . "</option>";
                                     }

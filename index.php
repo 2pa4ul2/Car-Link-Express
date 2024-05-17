@@ -16,10 +16,9 @@
             <img class="logo" src="assets/images/logo3.png" alt="">
             <ul>
                     <li><a class="nav-button" href="#">Home</a></li>
-                    <li><a class="nav-button" href="pages/create.php">Create</a></li>
-                    <li><a class="nav-button" href="pages/view.php">View</a></li>
-                    <li><a class="nav-button" href="#">Update</a></li>
-                    <li><a class="nav-button" href="#">Delete</a></li>
+                    <li><a class="nav-button" href="pages/create.php">Data</a></li>
+                    <li><a class="nav-button" href="pages/view.php">Display</a></li>
+                    <li><a class="nav-button" href="#">Query</a></li>
             </ul>
             <a class="login-btn" href="">Log in</a>
         </nav>
