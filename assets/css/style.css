@@ -23,7 +23,7 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 85%;
+    width: 80%;
     height: 80px;
     z-index: 1000;
 }
@@ -33,11 +33,10 @@ nav{
 
         ul{
             list-style-type: none;
-            width: 40%;
+            width: 50%;
             font-size: 16px;
             font-weight: 400;
             display: flex;
-            justify-content: space-around;
         }
 
         .nav-button {
@@ -64,7 +63,7 @@ nav{
     color: #5B504C;
     width: 100%;
     margin: 0 0 0 0;
-    font-size: 42px;
+    font-size: 32px;
     text-wrap: wrap;
     display: flex;
     align-items: center;
@@ -72,14 +71,14 @@ nav{
 }
         h1{
             font-weight: 500;
-            margin: 10px 0 20px 0;
+            margin: 10px 0 10px 0;
             text-align: center;
         }
 
         p{
             width: 40%;
             font-weight: 300;
-            font-size: 18px;
+            font-size: 16px;
             margin: 0;
             text-align: center;
             margin: 0 0 30px 0;
@@ -89,7 +88,7 @@ nav{
             justify-content: center;
         }
         .porche{
-            width: 70%;
+            width: 60%;
             border-radius: 25px;
         }
         

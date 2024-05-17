@@ -23,5 +23,29 @@
                 <a class="login-btn" href="">Log in</a>
             </nav>
     </header>
+    <main>
+        <table>
+            <tr>
+                <th>Supplier ID</th>
+                <th>Supplier Name</th>
+                <th>Contact Person</th>
+                <th>Contact Number</th>
+            </tr>
+            <?php
+                require_once "../includes/db.php";
+                $query = "SELECT * FROM supplier";
+                $stmt = $pdo -> prepare($query);
+                $stmt -> execute();
+                while($row = $stmt -> fetch()){
+                    echo "<tr>";
+                    echo "<td>" . $row['supplier_id'] . "</td>";
+                    echo "<td>" . $row['supplier_name'] . "</td>";
+                    echo "<td>" . $row['contact_person'] . "</td>";
+                    echo "<td>" . $row['contact_number'] . "</td>";
+                    echo "</tr>";
+                }
+            ?>
+        </table>
+    </main>
 </body>
 </html>
