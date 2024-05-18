@@ -20,7 +20,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/create.css">
+    <link rel="stylesheet" href="../assets/css/delete.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -53,13 +53,18 @@
 
             <div class="content-box">
                 <div class="content">
+                    <div class="table-container">
                         <table>
-                            <tr>
-                                <th>Supplier Id</th>
-                                <th>Supplier Name</th>
-                                <th>Contact Person</th>
-                                <th>Contact Number</th>
-                            </tr>
+                            <div class="tbl-header">
+                                <tr>
+                                    <th>Supplier Id</th>
+                                    <th>Supplier Name</th>
+                                    <th>Contact Person</th>
+                                    <th>Contact Number</th>
+                                    <th>Action</th>
+                                </tr>
+                            </div>
+                            <div class="tbl-content">
                             <?php
                                 $num = mysqli_num_rows($query);
                                 if($num > 0){
@@ -72,14 +77,16 @@
                                             <td>".$result['contact_number']."</td>
                                             <td>
                                                 <a href='../pages/deleteform.php?supplier_id=".$result['supplier_id']."' class='delete-btn'>Delete</a>
-                                            </td>
+                                        </td>
                                         ";
                                     }
                                     
                                 }
                                     
                             ?>
+                            </div>
                         </table>
+                    </div>
                 </div>
 
 
