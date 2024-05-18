@@ -1,3 +1,20 @@
+<?php 
+    $conn = mysqli_connect('localhost', 'root', '', 'database');
+
+    if(isset($_GET['supplier_id'])){
+        $supplier_id = $_GET['supplier_id'];
+        $delete= mysqli_query($conn, "DELETE FROM `supplier` WHERE `supplier_id`='$supplier_id'");
+    }
+    elseif(isset($_GET['product_id'])){
+        $product_id = $_GET['product_id'];
+        $delete= mysqli_query($conn, "DELETE FROM `product` WHERE `product_id`='$product_id'");
+    }
+
+    $select = "SELECT * FROM supplier";
+    $selectprod = "SELECT * FROM product";
+    $query = mysqli_query($conn, $select);
+    $queryprod = mysqli_query($conn, $selectprod);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,17 +53,33 @@
 
             <div class="content-box">
                 <div class="content">
-                        <div>
-                            <form action="../includes/delete.php" name="form_type" method="post">
-                                <label for="supplier_name">Supplier Name</label>
-                                <input class="form-input type="text" name="supplier_name" placeholder="Enter Supplier Name"><br>
-                                <label for="contact_person">Contact Person</label>
-                                <input class="form-input type="text" name="contact_person" placeholder="Enter Contact Person Name"><br>
-                                <label for="contact_number">Contact Number</label>
-                                <input class="form-input type="number" name="contact_number" placeholder="Enter Contact Number"><br>
-                                <button class="submit-btn">Submit</button>
-                            </form>
-                        </div>
+                        <table>
+                            <tr>
+                                <th>Supplier Id</th>
+                                <th>Supplier Name</th>
+                                <th>Contact Person</th>
+                                <th>Contact Number</th>
+                            </tr>
+                            <?php
+                                $num = mysqli_num_rows($query);
+                                if($num > 0){
+                                    while($result = mysqli_fetch_assoc($query)){
+                                        echo"
+                                        <tr>
+                                            <td>".$result['supplier_id']."</td>
+                                            <td>".$result['supplier_name']."</td>
+                                            <td>".$result['contact_person']."</td>
+                                            <td>".$result['contact_number']."</td>
+                                            <td>
+                                                <a href='../pages/deleteform.php?supplier_id=".$result['supplier_id']."' class='delete-btn'>Delete</a>
+                                            </td>
+                                        ";
+                                    }
+                                    
+                                }
+                                    
+                            ?>
+                        </table>
                 </div>
 
 
@@ -74,41 +107,36 @@
 
                 <div class="content">
                     <div>
-                        <form action="../includes/formhandler.php" method="post">
-                            <label for="product_name">Product Name</label>
-                            <input class="form-input type="text" name="product_name" placeholder="Enter Product Name">
-                            <label for="supplier_id">Supplier Id</label>
-                            <select class="select" name="supplier_id" id="">
-                                <option value="None">None</option>
-                                <?php
-                                    require_once "../includes/db.php";
-                                    $query = "SELECT * FROM supplier";
-                                    $stmt = $pdo -> prepare($query);
-                                    $stmt -> execute();
-                                    while($row = $stmt -> fetch()){
-                                        echo "<option value='" . $row['supplier_id'] . "'>" . $row['supplier_id'] . "</option>";
+                    <table>
+                            <tr>
+                                <th>Product Id</th>
+                                <th>Product Name</th>
+                                <th>Supplier Id</th>
+                                <th>Category Id</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                            <?php
+                                $num = mysqli_num_rows($queryprod);
+                                if($num > 0){
+                                    while($result = mysqli_fetch_assoc($queryprod)){
+                                        echo"
+                                        <tr>
+                                            <td>".$result['product_id']."</td>
+                                            <td>".$result['product_name']."</td>
+                                            <td>".$result['supplier_id']."</td>
+                                            <td>".$result['category_id']."</td>
+                                            <td>".$result['price']."</td>
+                                            <td>
+                                                <a href='../pages/deleteform.php?product_id=".$result['product_id']."' class='delete-btn'>Delete</a>
+                                            </td>
+                                        ";
                                     }
-                                ?>
-                                <option value="none"></option>
-                            </select>
-                            <label for="category_id">Category Id</label>
-                            <select class="select" name="category_id" id="">
-                                <option value="None">None</option>
-                                <?php
-                                    require_once "../includes/db.php";
-                                    $query = "SELECT * FROM category";
-                                    $stmt = $pdo -> prepare($query);
-                                    $stmt -> execute();
-                                    while($row = $stmt -> fetch()){
-                                        echo "<option value='" . $row['category_id'] . "'>" . $row['category_id'] . "</option>";
-                                    }
-                                ?>
-                                <option value="none"></option>
-                            </select>
-                            <label for="price">price</label>
-                            <input class="form-input type="number" name="price" placeholder="Enter Price Name">
-                            <button class="submit-btn">Submit</button>
-                        </form>
+                                    
+                                }
+                                    
+                            ?>
+                        </table>
                     </div>
                 </div>
             </div>
