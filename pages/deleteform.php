@@ -25,7 +25,6 @@
             </nav>
     </header>
     <main>
-        <h1>Delete Data</h1>
         <div class="container">
             <div class="content-btn">
                     <button class="tab-btn-secondary">Supplier</button>
@@ -66,7 +65,6 @@
                                         echo "<option value='" . $row['category_name'] . "'>" . $row['category_name'] . "</option>";
                                     }
                                 ?>
-                                <option value="none"></option>
                             </select>
                             <button class="submit-btn">Submit</button>
                         </form>
@@ -117,38 +115,6 @@
         </div>
     </main>
     
-
-    <script>
-        const tabs = document.querySelectorAll('.tab-btn');
-        const containers = document.querySelectorAll('.container');
-
-        tabs.forEach((tab, index) => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(tab => tab.classList.remove('active'));
-                tab.classList.add('active');
-
-                
-            });
-        });
-
-        const secondaryTabs = document.querySelectorAll('.tab-btn-secondary');
-        const secondaryContents = document.querySelectorAll('.content'); // Adjust if these have different content containers
-
-        secondaryTabs.forEach((tab, index) => {
-            tab.addEventListener('click', () => {
-                secondaryTabs.forEach(tab => tab.classList.remove('active'));
-                tab.classList.add('active');
-
-                var line = document.querySelector('.line');
-                line.style.width = tab.offsetWidth + 'px';
-                line.style.left = tab.offsetLeft + 'px';
-
-                // Hide all secondary contents
-                secondaryContents.forEach(content => content.style.display = 'none');
-                // Show the corresponding secondary content
-                secondaryContents[index].style.display = 'block';
-            });
-        });
-    </script>
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>
