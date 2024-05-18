@@ -16,7 +16,9 @@
             <img class="logo" src="assets/images/logo3.png" alt="">
             <ul>
                     <li><a class="nav-button" href="#">Home</a></li>
-                    <li><a class="nav-button" href="pages/create.php">Data</a></li>
+                    <li><a class="nav-button" href="pages/create.php">Create</a></li>
+                    <li><a class="nav-button" href="pages/updateform.php">Update</a></li>
+                    <li><a class="nav-button" href="pages/deleteform.php">Delete</a></li>
                     <li><a class="nav-button" href="pages/view.php">Display</a></li>
                     <li><a class="nav-button" href="#">Query</a></li>
             </ul>

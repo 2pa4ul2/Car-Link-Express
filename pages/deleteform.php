@@ -15,7 +15,9 @@
                 <img class="logo" src="../assets/images/logo3.png" alt="">
                 <ul>
                         <li><a class="nav-button" href="../index.php">Home</a></li>
-                        <li><a class="nav-button" href="#">Data</a></li>
+                        <li><a class="nav-button" href="create.php">Create</a></li>
+                        <li><a class="nav-button" href="updateform.php">Update</a></li>
+                        <li><a class="nav-button" href="deleteform.php">Delete</a></li>
                         <li><a class="nav-button" href="view.php">Display</a></li>
                         <li><a class="nav-button" href="#">Query</a></li>
                 </ul>
@@ -23,12 +25,7 @@
             </nav>
     </header>
     <main>
-            <div class="tab-box">
-                <button class="tab-btn">Create</button>
-                <button class="tab-btn">Update</button>
-                <button class="tab-btn">Delete</button>
-            </div>
-
+        <h1>Delete Data</h1>
         <div class="container">
             <div class="content-btn">
                     <button class="tab-btn-secondary">Supplier</button>
@@ -40,41 +37,50 @@
 
             <div class="content-box">
                 <div class="content">
-                        <h3>Supplier</h3>
                         <div>
-                            <form action="../includes/formhandler.php" name="form_type" method="post">
+                            <form action="../includes/delete.php" name="form_type" method="post">
                                 <label for="supplier_name">Supplier Name</label>
-                                <input type="text" name="supplier_name" placeholder="Enter Supplier Name"><br>
+                                <input class="form-input type="text" name="supplier_name" placeholder="Enter Supplier Name"><br>
                                 <label for="contact_person">Contact Person</label>
-                                <input type="text" name="contact_person" placeholder="Enter Contact Person Name"><br>
+                                <input class="form-input type="text" name="contact_person" placeholder="Enter Contact Person Name"><br>
                                 <label for="contact_number">Contact Number</label>
-                                <input type="number" name="contact_number" placeholder="Enter Contact Number"><br>
-                                <button>Submit</button>
+                                <input class="form-input type="number" name="contact_number" placeholder="Enter Contact Number"><br>
+                                <button class="submit-btn">Submit</button>
                             </form>
                         </div>
                 </div>
 
 
                 <div class="content">
-                    <h3>Category</h3>
                     <div>
-                        <form action="../includes/formhandler.php" method="post">
-                            <label for="category_name">Supplier Name</label>
-                            <input type="text" name="category_name" placeholder="Category name"><br>
-                            <button>Submit</button>
+                        <form action="../includes/delete.php" method="post">
+                            <label for="category_name">Category Name</label>
+                            <select class="select" name="category_name" id="">
+                                <option value="None">None</option>
+                                <?php
+                                    require_once "../includes/db.php";
+                                    $query = "SELECT * FROM category";
+                                    $stmt = $pdo -> prepare($query);
+                                    $stmt -> execute();
+                                    while($row = $stmt -> fetch()){
+                                        echo "<option value='" . $row['category_name'] . "'>" . $row['category_name'] . "</option>";
+                                    }
+                                ?>
+                                <option value="none"></option>
+                            </select>
+                            <button class="submit-btn">Submit</button>
                         </form>
                     </div>
                 </div>
 
 
                 <div class="content">
-                    <h3>Product</h3>
                     <div>
                         <form action="../includes/formhandler.php" method="post">
                             <label for="product_name">Product Name</label>
-                            <input type="text" name="product_name" placeholder="Enter Product Name">
+                            <input class="form-input type="text" name="product_name" placeholder="Enter Product Name">
                             <label for="supplier_id">Supplier Id</label>
-                            <select name="supplier_id" id="">
+                            <select class="select" name="supplier_id" id="">
                                 <option value="None">None</option>
                                 <?php
                                     require_once "../includes/db.php";
@@ -88,7 +94,7 @@
                                 <option value="none"></option>
                             </select>
                             <label for="category_id">Category Id</label>
-                            <select name="category_id" id="">
+                            <select class="select" name="category_id" id="">
                                 <option value="None">None</option>
                                 <?php
                                     require_once "../includes/db.php";
@@ -102,8 +108,8 @@
                                 <option value="none"></option>
                             </select>
                             <label for="price">price</label>
-                            <input type="number" name="price" placeholder="Enter Price Name">
-                            <button>Submit</button>
+                            <input class="form-input type="number" name="price" placeholder="Enter Price Name">
+                            <button class="submit-btn">Submit</button>
                         </form>
                     </div>
                 </div>
