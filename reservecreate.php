@@ -1,55 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Carlink</title>
-</head>
-<body>
-    <header>
-            <nav>
-                <img class="logo" src="../assets/images/logo3.png" alt="">
-                <ul>
-                        <li><a class="nav-button" href="../index.php">Home</a></li>
-                        <li><a class="nav-button" href="#">Create</a></li>
-                        <li><a class="nav-button" href="view.php">View</a></li>
-                        <li><a class="nav-button" href="#">Update</a></li>
-                        <li><a class="nav-button" href="#">Delete</a></li>
-                </ul>
-                <a class="login-btn" href="">Log in</a>
-            </nav>
-    </header>
-    <main>
-        <h3>Create</h3>
-        <div>
-            <form action="../includes/formhandler.php" method="post">
-                <input type="text" name="supplier_name" placeholder="Supplier name">
-                <input type="text" name="contact_person" placeholder="Contact person">
-                <input type="text" name="contact_number" placeholder="Contact number">
-                <button>Submit</button>
-            </form>
-        </div>
-        <h3>Delete</h3>
-        <div>
-            <form action="../includes/delete.php" method="post">
-                <input type="text" name="supplier_name" placeholder="Supplier name">
-                <input type="text" name="contact_person" placeholder="Contact person">
-                <button>Submit</button>
-            </form>
-        </div>
-        <h3>Update</h3>
-        <div>
-            <form action="../includes/update.php" method="post">
-                <input type="text" name="supplier_name" placeholder="Supplier name">
-                <input type="text" name="contact_person" placeholder="Contact person">
-                <input type="text" name="contact_number" placeholder="Contact number">
-                <button>Submit</button>
-            </form>
-        </div>
-    </main>
-</body>
-</html>
+<?php
+
+if ($_SERVER["REQUEST_METHOD"]== "POST"){ #check if the form has been submitted
+    require 'db.php';
+
+    $supplier_name = $_POST['supplier_name'];
+    $contact_person = $_POST['contact_person'];
+    $contact_number = $_POST['contact_number'];
+
+    try{
+        require_once "db.php";#call the file the connects to database
+
+        $query = "UPDATE supplier set supplier_name = :supplier_name, contact_person = :contact_person, contact_number = :contact_number WHERE supplier_id = 4;";#the query to be executed
+
+        $stmt = $pdo -> prepare($query);#prepare the query
+
+        $stmt -> bindParam(':supplier_name', $supplier_name);#bind the parameters
+        $stmt -> bindParam(':contact_person', $contact_person);#bind the parameters
+        $stmt -> bindParam(':contact_number', $contact_number);#bind the parameters
+
+        $stmt ->execute();#execute the query
+
+        $pdo = null;
+        $stmt = null;
+
+        header("Location: ../pages/create.php?message=success");#redirect the same page after submitting
+
+        die("Supplier added successfully");#end the script
+
+    } catch(PDOException $e){
+        die("Could not connect to the database $dbname :" . $e->getMessage());
+    }
+
+} else {
+    header("Location: ../pages/create.php");
+}

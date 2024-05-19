@@ -1,36 +1,104 @@
 <?php
 
-if ($_SERVER["REQUEST_METHOD"]== "POST"){ #check if the form has been submitted
-    require 'db.php';
+class SupplierManager {
+    private $conn;
 
+    public function __construct() {
+        $this->conn = mysqli_connect('localhost', 'root', '', 'database');
+
+        if (!$this->conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+    }
+
+    public function getSupplierById($supplier_id) {
+        $result = mysqli_query($this->conn, "SELECT * FROM `supplier` WHERE `supplier_id`='$supplier_id'");
+
+        if(!$result){
+            die("Query failed: " . mysqli_error($this->conn));
+        } else {
+            return mysqli_fetch_assoc($result);
+        }
+    }
+
+    public function updateSupplier($new_supplier_id, $supplier_name, $contact_person, $contact_number) {
+        $query = mysqli_query($this->conn, "UPDATE `supplier` SET `supplier_name`='$supplier_name', `contact_person`='$contact_person', `contact_number`='$contact_number' WHERE `supplier_id` = $new_supplier_id");
+
+        if(!$query){
+            die("Query failed: " . mysqli_error($this->conn));
+        } else {
+            header('location: deleteform.php?update_msg=success.');
+        }
+    }
+}
+
+class CategoryManager {
+    private $conn;
+
+    public function __construct() {
+        $this->conn = mysqli_connect('localhost', 'root', '', 'database');
+
+        if (!$this->conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+    }
+
+    public function getCategoryById($category_id) {
+        $result = mysqli_query($this->conn, "SELECT * FROM `category` WHERE `category_id`='$category_id'");
+
+        if(!$result){
+            die("Query failed: " . mysqli_error($this->conn));
+        } else {
+            return mysqli_fetch_assoc($result);
+        }
+    }
+
+    public function updateCategory($new_category_id, $category_name) {
+        $query = mysqli_query($this->conn, "UPDATE `category` SET `category_name`='$category_name' WHERE `category_id` = $new_category_id");
+
+        if(!$query){
+            die("Query failed: " . mysqli_error($this->conn));
+        } else {
+            header('location: deleteform.php?update_msg=success.');
+        }
+    }
+}
+
+$supplierManager = new SupplierManager();
+$categoryManager = new CategoryManager();
+
+if(isset($_GET['supplier_id'])){
+    $supplier_id = $_GET['supplier_id'];
+    $row = $supplierManager->getSupplierById($supplier_id);
+}
+
+if(isset($_GET['category_id'])){
+    $category_id = $_GET['category_id'];
+    $row = $categoryManager->getCategoryById($category_id);
+
+}
+
+
+if(isset($_GET['new_supplier_id'])){
+    $new_supplier_id = $_GET['new_supplier_id'];
+}
+
+if(isset($_GET['new_category_id'])){
+    $new_category_id = $_GET['new_category_id'];
+}
+
+if(isset($_POST['update_supplier'])){ 
     $supplier_name = $_POST['supplier_name'];
     $contact_person = $_POST['contact_person'];
     $contact_number = $_POST['contact_number'];
 
-    try{
-        require_once "db.php";#call the file the connects to database
-
-        $query = "UPDATE supplier set supplier_name = :supplier_name, contact_person = :contact_person, contact_number = :contact_number WHERE supplier_id = 4;";#the query to be executed
-
-        $stmt = $pdo -> prepare($query);#prepare the query
-
-        $stmt -> bindParam(':supplier_name', $supplier_name);#bind the parameters
-        $stmt -> bindParam(':contact_person', $contact_person);#bind the parameters
-        $stmt -> bindParam(':contact_number', $contact_number);#bind the parameters
-
-        $stmt ->execute();#execute the query
-
-        $pdo = null;
-        $stmt = null;
-
-        header("Location: ../pages/create.php?message=success");#redirect the same page after submitting
-
-        die("Supplier added successfully");#end the script
-
-    } catch(PDOException $e){
-        die("Could not connect to the database $dbname :" . $e->getMessage());
-    }
-
-} else {
-    header("Location: ../pages/create.php");
+    $supplierManager->updateSupplier($new_supplier_id, $supplier_name, $contact_person, $contact_number);
 }
+
+if(isset($_POST['update_category'])){ 
+    $category_name = $_POST['category_name'];
+
+    $categoryManager->updateCategory($new_category_id, $category_name);
+}
+
+?>

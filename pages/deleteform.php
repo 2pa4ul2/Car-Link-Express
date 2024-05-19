@@ -9,11 +9,17 @@
         $product_id = $_GET['product_id'];
         $delete= mysqli_query($conn, "DELETE FROM `product` WHERE `product_id`='$product_id'");
     }
+    elseif(isset($_GET['category_id'])){
+        $category_id = $_GET['category_id'];
+        $delete= mysqli_query($conn, "DELETE FROM `category` WHERE `category_id`='$category_id'");
+    }
 
     $select = "SELECT * FROM supplier";
     $selectprod = "SELECT * FROM product";
+    $selectcat = "SELECT * FROM category";
     $query = mysqli_query($conn, $select);
     $queryprod = mysqli_query($conn, $selectprod);
+    $querycat = mysqli_query($conn, $selectcat);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +39,7 @@
                 <ul>
                         <li><a class="nav-button" href="../index.php">Home</a></li>
                         <li><a class="nav-button" href="create.php">Create</a></li>
-                        <li><a class="nav-button" href="updateform.php">Update</a></li>
-                        <li><a class="nav-button" href="deleteform.php">Delete</a></li>
+                        <li><a class="nav-button" href="deleteform.php">Modify</a></li>
                         <li><a class="nav-button" href="view.php">Display</a></li>
                         <li><a class="nav-button" href="#">Query</a></li>
                 </ul>
@@ -61,7 +66,8 @@
                                     <th>Supplier Name</th>
                                     <th>Contact Person</th>
                                     <th>Contact Number</th>
-                                    <th>Action</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
                                 </tr>
                             </div>
                             <div class="tbl-content">
@@ -76,8 +82,11 @@
                                             <td>".$result['contact_person']."</td>
                                             <td>".$result['contact_number']."</td>
                                             <td>
+                                                <a href='../pages/supplierupdate.php?supplier_id=".$result['supplier_id']."' class='update-btn'>Update</a>
+                                            </td>
+                                            <td>
                                                 <a href='../pages/deleteform.php?supplier_id=".$result['supplier_id']."' class='delete-btn'>Delete</a>
-                                        </td>
+                                            </td>
                                         ";
                                     }
                                     
@@ -93,20 +102,38 @@
                 <div class="content">
                     <div>
                         <form action="../includes/delete.php" method="post">
-                            <label for="category_name">Category Name</label>
-                            <select class="select" name="category_name" id="">
-                                <option value="None">None</option>
-                                <?php
-                                    require_once "../includes/db.php";
-                                    $query = "SELECT * FROM category";
-                                    $stmt = $pdo -> prepare($query);
-                                    $stmt -> execute();
-                                    while($row = $stmt -> fetch()){
-                                        echo "<option value='" . $row['category_name'] . "'>" . $row['category_name'] . "</option>";
+                        <table>
+                            <div class="tbl-header">
+                                <tr>
+                                    <th>Category Id</th>
+                                    <th>Category Name</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </div>
+                            <div class="tbl-content">
+                            <?php
+                                $num = mysqli_num_rows($query);
+                                if($num > 0){
+                                    while($result = mysqli_fetch_assoc($querycat)){
+                                        echo"
+                                        <tr>
+                                            <td>".$result['category_id']."</td>
+                                            <td>".$result['category_name']."</td>
+                                            <td>
+                                                <a href='../pages/categoryupdate.php?category_id=".$result['category_id']."' class='update-btn'>Update</a>
+                                            </td>
+                                            <td>
+                                                <a href='../pages/deleteform.php?category_id=".$result['category_id']."' class='delete-btn'>Delete</a>
+                                            </td>
+                                        ";
                                     }
-                                ?>
-                            </select>
-                            <button class="submit-btn">Submit</button>
+                                    
+                                }
+                                    
+                            ?>
+                            </div>
+                            </table>
                         </form>
                     </div>
                 </div>
@@ -121,7 +148,8 @@
                                 <th>Supplier Id</th>
                                 <th>Category Id</th>
                                 <th>Price</th>
-                                <th>Action</th>
+                                <th>Update</th>
+                                <th>Delete</th>
                             </tr>
                             <?php
                                 $num = mysqli_num_rows($queryprod);
@@ -134,6 +162,9 @@
                                             <td>".$result['supplier_id']."</td>
                                             <td>".$result['category_id']."</td>
                                             <td>".$result['price']."</td>
+                                            <td>
+                                                <a href='../pages/productupdate.php?product_id=".$result['product_id']."' class='update-btn'>Update</a>
+                                            </td>
                                             <td>
                                                 <a href='../pages/deleteform.php?product_id=".$result['product_id']."' class='delete-btn'>Delete</a>
                                             </td>
