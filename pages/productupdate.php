@@ -1,37 +1,30 @@
 <?php
-// Include necessary files and initialize database connection
 require_once "../includes/db.php";
 
-// Check if product_id is set
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
 
-    // Fetch product data corresponding to the product ID
     $query = "SELECT * FROM product WHERE product_id = :product_id";
     $stmt = $pdo->prepare($query);
     $stmt->execute(['product_id' => $product_id]);
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Fetch supplier data
     $query = "SELECT * FROM supplier";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $suppliers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Fetch category data
     $query = "SELECT * FROM category";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Check if form is submitted for updating product
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_product'])) {
         $product_name = $_POST['product_name'];
         $supplier_id = $_POST['supplier_id'];
         $category_id = $_POST['category_id'];
         $price = $_POST['price'];
 
-        // Update product details in the database
         $update_query = "UPDATE product SET product_name = :product_name, supplier_id = :supplier_id, category_id = :category_id, price = :price WHERE product_id = :product_id";
         $update_stmt = $pdo->prepare($update_query);
         $update_stmt->execute([
@@ -42,12 +35,10 @@ if (isset($_GET['product_id'])) {
             'product_id' => $product_id
         ]);
 
-        // Redirect to view page after updating
         header("Location: view.php");
         exit();
     }
 } else {
-    // Redirect if product_id is not set
     header("Location: ../index.php");
     exit();
 }
