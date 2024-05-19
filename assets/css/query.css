@@ -80,7 +80,7 @@ main{
     align-items: center;
 }
 .container {
-    width:40%;
+    width:50%;
     background-color: white;
     padding: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -135,7 +135,7 @@ main{
 .line{
     position: absolute;
     top: 48px;
-    left: 180px;
+    left: 260px;
     width: 250px;
     height: 3px;
     background-color: #584E4A;

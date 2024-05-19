@@ -19,7 +19,8 @@
                     <li><a class="nav-button" href="pages/create.php">Create</a></li>
                     <li><a class="nav-button" href="pages/deleteform.php">Modify</a></li>
                     <li><a class="nav-button" href="pages/view.php">Display</a></li>
-                    <li><a class="nav-button" href="#">Query</a></li>
+                    <li><a class="nav-button" href="pages/querycategory.php">Query 1</a></li>
+                    <li><a class="nav-button" href="pages/querydistributed.php">Query 2</a></li>
             </ul>
             <a class="login-btn" href="">Log in</a>
         </nav>

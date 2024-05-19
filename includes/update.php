@@ -4,7 +4,7 @@ class SupplierManager {
     private $conn;
 
     public function __construct() {
-        $this->conn = mysqli_connect('localhost', 'root', '', 'database');
+        $this->conn = mysqli_connect('localhost', 'root', '', 'carlink');
 
         if (!$this->conn) {
             die("Connection failed: " . mysqli_connect_error());
@@ -36,7 +36,7 @@ class CategoryManager {
     private $conn;
 
     public function __construct() {
-        $this->conn = mysqli_connect('localhost', 'root', '', 'database');
+        $this->conn = mysqli_connect('localhost', 'root', '', 'carlink');
 
         if (!$this->conn) {
             die("Connection failed: " . mysqli_connect_error());

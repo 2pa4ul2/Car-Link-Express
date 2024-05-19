@@ -1,5 +1,5 @@
 <?php 
-    $conn = mysqli_connect('localhost', 'root', '', 'database');
+    $conn = mysqli_connect('localhost', 'root', '', 'carlink');
 
     if(isset($_GET['supplier_id'])){
         $supplier_id = $_GET['supplier_id'];
@@ -41,7 +41,8 @@
                         <li><a class="nav-button" href="create.php">Create</a></li>
                         <li><a class="nav-button" href="deleteform.php">Modify</a></li>
                         <li><a class="nav-button" href="view.php">Display</a></li>
-                        <li><a class="nav-button" href="#">Query</a></li>
+                        <li><a class="nav-button" href="querycategory.php">Query 1</a></li>
+                        <li><a class="nav-button" href="querydistributed.php">Query 2</a></li>
                 </ul>
                 <a class="login-btn" href="">Log in</a>
             </nav>
@@ -100,82 +101,82 @@
 
 
                 <div class="content">
-                    <div>
-                        <form action="../includes/delete.php" method="post">
-                        <table>
-                            <div class="tbl-header">
-                                <tr>
-                                    <th>Category Id</th>
-                                    <th>Category Name</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </div>
-                            <div class="tbl-content">
-                            <?php
-                                $num = mysqli_num_rows($query);
-                                if($num > 0){
-                                    while($result = mysqli_fetch_assoc($querycat)){
-                                        echo"
-                                        <tr>
-                                            <td>".$result['category_id']."</td>
-                                            <td>".$result['category_name']."</td>
-                                            <td>
-                                                <a href='../pages/categoryupdate.php?category_id=".$result['category_id']."' class='update-btn'>Update</a>
-                                            </td>
-                                            <td>
-                                                <a href='../pages/deleteform.php?category_id=".$result['category_id']."' class='delete-btn'>Delete</a>
-                                            </td>
-                                        ";
+                    <div class="table-container">
+                            <form action="../includes/delete.php" method="post">
+                            <table>
+                                <div class="tbl-header">
+                                    <tr>
+                                        <th>Category Id</th>
+                                        <th>Category Name</th>
+                                        <th>Update</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </div>
+                                <div class="tbl-content">
+                                <?php
+                                    $num = mysqli_num_rows($query);
+                                    if($num > 0){
+                                        while($result = mysqli_fetch_assoc($querycat)){
+                                            echo"
+                                            <tr>
+                                                <td>".$result['category_id']."</td>
+                                                <td>".$result['category_name']."</td>
+                                                <td>
+                                                    <a href='../pages/categoryupdate.php?category_id=".$result['category_id']."' class='update-btn'>Update</a>
+                                                </td>
+                                                <td>
+                                                    <a href='../pages/deleteform.php?category_id=".$result['category_id']."' class='delete-btn'>Delete</a>
+                                                </td>
+                                            ";
+                                        }
+                                        
                                     }
-                                    
-                                }
-                                    
-                            ?>
-                            </div>
-                            </table>
-                        </form>
-                    </div>
+                                        
+                                ?>
+                                </div>
+                                </table>
+                            </form>
+                        </div>
                 </div>
 
 
                 <div class="content">
-                    <div>
-                    <table>
-                            <tr>
-                                <th>Product Id</th>
-                                <th>Product Name</th>
-                                <th>Supplier Id</th>
-                                <th>Category Id</th>
-                                <th>Price</th>
-                                <th>Update</th>
-                                <th>Delete</th>
-                            </tr>
-                            <?php
-                                $num = mysqli_num_rows($queryprod);
-                                if($num > 0){
-                                    while($result = mysqli_fetch_assoc($queryprod)){
-                                        echo"
-                                        <tr>
-                                            <td>".$result['product_id']."</td>
-                                            <td>".$result['product_name']."</td>
-                                            <td>".$result['supplier_id']."</td>
-                                            <td>".$result['category_id']."</td>
-                                            <td>".$result['price']."</td>
-                                            <td>
-                                                <a href='../pages/productupdate.php?product_id=".$result['product_id']."' class='update-btn'>Update</a>
-                                            </td>
-                                            <td>
-                                                <a href='../pages/deleteform.php?product_id=".$result['product_id']."' class='delete-btn'>Delete</a>
-                                            </td>
-                                        ";
+                    <div class="table-container">
+                        <table>
+                                <tr>
+                                    <th>Product Id</th>
+                                    <th>Product Name</th>
+                                    <th>Supplier Id</th>
+                                    <th>Category Id</th>
+                                    <th>Price</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <?php
+                                    $num = mysqli_num_rows($queryprod);
+                                    if($num > 0){
+                                        while($result = mysqli_fetch_assoc($queryprod)){
+                                            echo"
+                                            <tr>
+                                                <td>".$result['product_id']."</td>
+                                                <td>".$result['product_name']."</td>
+                                                <td>".$result['supplier_id']."</td>
+                                                <td>".$result['category_id']."</td>
+                                                <td>".$result['price']."</td>
+                                                <td>
+                                                    <a href='../pages/productupdate.php?product_id=".$result['product_id']."' class='update-btn'>Update</a>
+                                                </td>
+                                                <td>
+                                                    <a href='../pages/deleteform.php?product_id=".$result['product_id']."' class='delete-btn'>Delete</a>
+                                                </td>
+                                            ";
+                                        }
+                                        
                                     }
-                                    
-                                }
-                                    
-                            ?>
-                        </table>
-                    </div>
+                                        
+                                ?>
+                            </table>
+                        </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 
-$dsn = 'mysql:host=localhost;dbname=database';
+$dsn = 'mysql:host=localhost;dbname=carlink';
 $dbusername = 'root';
 $dbpassword = '';
 

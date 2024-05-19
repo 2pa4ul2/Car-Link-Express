@@ -18,7 +18,8 @@
                         <li><a class="nav-button" href="create.php">Create</a></li>
                         <li><a class="nav-button" href="deleteform.php">Modify</a></li>
                         <li><a class="nav-button" href="view.php">Display</a></li>
-                        <li><a class="nav-button" href="#">Query</a></li>
+                        <li><a class="nav-button" href="querycategory.php">Query 1</a></li>
+                        <li><a class="nav-button" href="querydistributed.php">Query 2</a></li>
                 </ul>
                 <a class="login-btn" href="">Log in</a>
             </nav>
