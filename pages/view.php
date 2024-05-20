@@ -1,3 +1,25 @@
+<?php
+    require_once "../includes/db.php";
+    
+    // count supplier
+    $query_supplier_count = "SELECT COUNT(*) as supplier_count FROM supplier";
+    $stmt_supplier_count = $pdo->prepare($query_supplier_count);
+    $stmt_supplier_count->execute();
+    $supplier_count = $stmt_supplier_count->fetch(PDO::FETCH_ASSOC)['supplier_count'];
+
+    // count category
+    $query_category_count = "SELECT COUNT(*) as category_count FROM category";
+    $stmt_category_count = $pdo->prepare($query_category_count);
+    $stmt_category_count->execute();
+    $category_count = $stmt_category_count->fetch(PDO::FETCH_ASSOC)['category_count'];
+
+    // count product
+    $query_product_count = "SELECT COUNT(*) as product_count FROM product";
+    $stmt_product_count = $pdo->prepare($query_product_count);
+    $stmt_product_count->execute();
+    $product_count = $stmt_product_count->fetch(PDO::FETCH_ASSOC)['product_count'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +88,7 @@
                             </div>
                         </table>
                     </div>
+                    <h4>Number of Suppliers: <?php echo $supplier_count; ?></h4>
                 </div>
 
 
@@ -96,11 +119,12 @@
                             </div>
                         </table>
                     </div>
+                    <h4>Number of Categories: <?php echo $category_count; ?></h4>
                 </div>
 
 
                 <div class="content">
-                <div class="table-container">
+                    <div class="table-container">
                         <table>
                             <div class="tbl-header">
                                 <tr>
@@ -132,6 +156,7 @@
                             </div>
                         </table>
                     </div>
+                    <h4>Number of Products: <?php echo $product_count; ?></h4>
                 </div>
                 
             </div>

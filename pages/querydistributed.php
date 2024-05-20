@@ -1,3 +1,16 @@
+<?php
+    require_once "../includes/db.php";
+
+    $query_supplier_count = "SELECT supplier.supplier_name, COUNT(product.product_id) AS car_count
+                            FROM supplier
+                            LEFT JOIN product ON supplier.supplier_id = product.supplier_id
+                            GROUP BY supplier.supplier_id
+                            ORDER BY supplier.supplier_name";
+    $stmt_supplier_count = $pdo->prepare($query_supplier_count);
+    $stmt_supplier_count->execute();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,6 +74,37 @@
                                             <td>" . $row['contact_number'] . "</td>
                                             <td>" . $row['product_name'] . "</td>
                                             <td>$" . $row['price'] . "</td>
+                                        </tr>
+                                        ";
+                                    }
+                                ?>
+                            </div>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="count-container">
+            <div class="content-btn">
+                    <button class="tab-btn-secondary">Car Count Per Category</button>
+            </div>    
+            <div class="content-box">
+                <div class="content">
+                    <div class="table-container">
+                    <table>
+                            <div class="tbl-header">
+                                <tr>
+                                    <th>Supplier Name</th>
+                                    <th>Car Distributed</th>
+                                </tr>
+                            </div>
+                            <div>
+                                <?php
+                                    while($row = $stmt_supplier_count->fetch(PDO::FETCH_ASSOC)){
+                                        echo "
+                                        <tr>
+                                            <td>" . $row['supplier_name'] . "</td>
+                                            <td>" . $row['car_count'] . "</td>
                                         </tr>
                                         ";
                                     }

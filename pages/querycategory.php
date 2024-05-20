@@ -1,3 +1,16 @@
+<?php
+    require_once "../includes/db.php";
+
+    // Query to fetch category names and count of cars under each category
+    $query_category_count = "SELECT category.category_name, COUNT(product.product_id) AS car_count
+                            FROM category
+                            LEFT JOIN product ON category.category_id = product.category_id
+                            GROUP BY category.category_id
+                            ORDER BY category.category_name";
+    $stmt_category_count = $pdo->prepare($query_category_count);
+    $stmt_category_count->execute();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,6 +71,37 @@
                                             <td>" . $row['category_name'] . "</td>
                                             <td>" . $row['product_name'] . "</td>
                                             <td>$" . $row['price'] . "</td>
+                                        </tr>
+                                        ";
+                                    }
+                                ?>
+                            </div>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="count-container">
+            <div class="content-btn">
+                    <button class="tab-btn-secondary">Car Count Per Category</button>
+            </div>    
+            <div class="content-box">
+                <div class="content">
+                    <div class="table-container">
+                    <table>
+                            <div class="tbl-header">
+                                <tr>
+                                    <th>Category Name</th>
+                                    <th>Number of Cars</th>
+                                </tr>
+                            </div>
+                            <div>
+                                <?php
+                                    while($row = $stmt_category_count->fetch(PDO::FETCH_ASSOC)){
+                                        echo "
+                                        <tr>
+                                            <td>" . $row['category_name'] . "</td>
+                                            <td>" . $row['car_count'] . "</td>
                                         </tr>
                                         ";
                                     }

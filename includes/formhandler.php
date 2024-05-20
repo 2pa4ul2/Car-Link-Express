@@ -1,9 +1,9 @@
 <?php
 
-if ($_SERVER["REQUEST_METHOD"]== "POST"){ #check if the form has been submitted
+if ($_SERVER["REQUEST_METHOD"]== "POST") { 
     require 'db.php';
 
-    if(isset($_POST['supplier_name']) && isset($_POST['supplier_name']) && isset($_POST['supplier_name'])){
+    if(isset($_POST['supplier_name'], $_POST['contact_person'], $_POST['contact_number'])){
         
         $supplier_name = $_POST['supplier_name']; 
         $contact_person = $_POST['contact_person']; 
@@ -14,28 +14,36 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){ #check if the form has been submitted
         }        
 
         try{
-            
-            $query = "INSERT INTO supplier(supplier_name, contact_person, contact_number) VALUES(:supplier_name, :contact_person, :contact_number);";#the query to be executed
-    
-            $stmt = $pdo -> prepare($query);#prepare the query
-    
-            $stmt -> bindParam(':supplier_name', $supplier_name);#bind the parameters
-            $stmt -> bindParam(':contact_person', $contact_person);#bind the parameters
-            $stmt -> bindParam(':contact_number', $contact_number);#bind the parameters
-    
-            $stmt ->execute();#execute the query
-    
+            $check_query = "SELECT * FROM supplier WHERE supplier_name = :supplier_name AND contact_person = :contact_person AND contact_number = :contact_number";
+            $check_stmt = $pdo->prepare($check_query);
+            $check_stmt->bindParam(':supplier_name', $supplier_name);
+            $check_stmt->bindParam(':contact_person', $contact_person);
+            $check_stmt->bindParam(':contact_number', $contact_number);
+            $check_stmt->execute();
+            $existing_supplier = $check_stmt->fetch();
+
+            if($existing_supplier) {
+                die("Supplier already exists");
+            }
+
+            $query = "INSERT INTO supplier(supplier_name, contact_person, contact_number) VALUES(:supplier_name, :contact_person, :contact_number)";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(':supplier_name', $supplier_name);
+            $stmt->bindParam(':contact_person', $contact_person);
+            $stmt->bindParam(':contact_number', $contact_number);
+            $stmt->execute();
+
             $pdo = null;
             $stmt = null;
-    
-            header("Location: ../pages/create.php?message=success");#redirect the same page after submitting
-    
-            die("Supplier added successfully");#end the script
-    
+
+            header("Location: ../pages/create.php?message=success");
+            exit();
+
         } catch(PDOException $e){
             die("Could not connect to the database $dbname :" . $e->getMessage());
         }
     }
+
     elseif(isset($_POST['category_name'])){
         
         $category_name = $_POST['category_name']; 
@@ -46,26 +54,33 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){ #check if the form has been submitted
         
         try{
             
-            $query = "INSERT INTO category(category_name) VALUES(:category_name);";#the query to be executed
-    
-            $stmt = $pdo -> prepare($query);#prepare the query
-    
-            $stmt -> bindParam(':category_name', $category_name);#bind the parameters
-    
-            $stmt ->execute();#execute the query
-    
+            $check_query = "SELECT * FROM category WHERE category_name = :category_name";
+            $check_stmt = $pdo->prepare($check_query);
+            $check_stmt->bindParam(':category_name', $category_name);
+            $check_stmt->execute();
+            $existing_category = $check_stmt->fetch();
+
+            if($existing_category) {
+                die("Category already exists");
+            }
+
+            // If the category doesn't exist, insert it
+            $query = "INSERT INTO category(category_name) VALUES(:category_name)";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(':category_name', $category_name);
+            $stmt->execute();
+
             $pdo = null;
             $stmt = null;
-    
-            header("Location: ../pages/create.php?message=success");#redirect the same page after submitting
-    
-            die("Supplier added successfully");#end the script
-    
+
+            header("Location: ../pages/create.php?message=success");
+            exit();
+
         } catch(PDOException $e){
             die("Could not connect to the database $dbname :" . $e->getMessage());
         }
     }
-    elseif(isset($_POST['product_name']) && isset($_POST['supplier_id']) && isset($_POST['category_id']) && isset($_POST['price'])){
+    elseif(isset($_POST['product_name'], $_POST['supplier_id'], $_POST['category_id'], $_POST['price'])){
         
         $product_name = $_POST['product_name']; 
         $supplier_id = $_POST['supplier_id']; 
@@ -78,24 +93,34 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){ #check if the form has been submitted
 
         try{
             
-            $query = "INSERT INTO product(product_name, supplier_id, category_id, price) VALUES(:product_name, :supplier_id, :category_id, :price);";#the query to be executed
-    
-            $stmt = $pdo -> prepare($query);#prepare the query
-    
-            $stmt -> bindParam(':product_name', $product_name);#bind the parameters
-            $stmt -> bindParam(':supplier_id', $supplier_id);#bind the parameters
-            $stmt -> bindParam(':category_id', $category_id);#bind the parameters
-            $stmt -> bindParam(':price', $price);#bind the parameters
-    
-            $stmt ->execute();#execute the query
-    
+            $check_query = "SELECT * FROM product WHERE product_name = :product_name AND supplier_id = :supplier_id AND category_id = :category_id AND price = :price";
+            $check_stmt = $pdo->prepare($check_query);
+            $check_stmt->bindParam(':product_name', $product_name);
+            $check_stmt->bindParam(':supplier_id', $supplier_id);
+            $check_stmt->bindParam(':category_id', $category_id);
+            $check_stmt->bindParam(':price', $price);
+            $check_stmt->execute();
+            $existing_product = $check_stmt->fetch();
+
+            if($existing_product) {
+                die("Product already exists");
+            }
+
+            // If the product doesn't exist, insert it
+            $query = "INSERT INTO product(product_name, supplier_id, category_id, price) VALUES(:product_name, :supplier_id, :category_id, :price)";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(':product_name', $product_name);
+            $stmt->bindParam(':supplier_id', $supplier_id);
+            $stmt->bindParam(':category_id', $category_id);
+            $stmt->bindParam(':price', $price);
+            $stmt->execute();
+
             $pdo = null;
             $stmt = null;
-    
-            header("Location: ../pages/create.php?message=success");#redirect the same page after submitting
-    
-            die("Supplier added successfully");#end the script
-    
+
+            header("Location: ../pages/create.php?message=success");
+            exit();
+
         } catch(PDOException $e){
             die("Could not connect to the database $dbname :" . $e->getMessage());
         }
@@ -107,3 +132,4 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){ #check if the form has been submitted
 } else {
     header("Location: ../pages/create.php");
 }
+?>
