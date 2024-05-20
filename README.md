@@ -39,35 +39,86 @@
 ## Sitemap
 ### `Home` - Main Page
 
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/e5a29731-1334-42f7-b0d0-1b156e0a0fb1)
+<p align="center">
+    <img width="90%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/home.png" alt="home"/>
+</p>
 
 ### `Create` - Data Input and Creation
+<details open>
+<summary>
+ Pages
+</summary> <br />
 
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/31906c06-b2fe-4b25-a064-0cf47ba1bc30)
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/aa23f517-cd63-48c6-99a8-3c415f4c7565)
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/b90581a6-d2eb-4d73-8e92-e41618a63433)
+<p align="center">
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/create1.png" alt="create"/>
+&nbsp;
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/create2.png" alt="create"/>
+</p>
+
+<p align="center">
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/create3.png" alt="create"/>
+&nbsp;
+</p>
+</details>
+
 ### `Modify` - Update and Delete
 
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/092367d9-3897-4a97-96f7-01c3ddbc90c5)
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/9c271300-b9ac-4df1-a6f6-65c2559870bd)
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/20b9b12b-d6f1-402b-bb89-0cacf15fd067)
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/c6174252-69bd-4b1f-af2b-9bbfdc29ba3e)
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/e7b8557a-a532-4b7c-9e56-48478ff9fde8)
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/7cd07f95-ccbc-4628-ad16-b1ef253b38e5)
+<details open>
+<summary>
+ Pages
+</summary> <br />
+
+<p align="center">
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/modify1.png" alt="modify"/>
+&nbsp;
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/modify2.png" alt="modify"/>
+</p>
+
+<p align="center">
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/modify3.png" alt="modify"/>
+&nbsp;
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/modify4.png" alt="modify"/>
+</p>
+
+<p align="center">
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/modify5.png" alt="modify"/>
+&nbsp;
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/modify6.png" alt="modify"/>
+</p>
+
+</details>
 
 ### `Display` - Data Display
 
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/def06ad7-30af-4291-84e8-90f80fe2c6ec)
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/2c00878e-6780-4d9e-ab10-347ac6a6d988)
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/0550a48a-65d5-4a48-992f-c22a38e9b22d)
+<details open>
+<summary>
+ Pages
+</summary> <br />
+
+<p align="center">
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/display1.png" alt="display"/>
+&nbsp;
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/display2.png" alt="display"/>
+</p>
+
+<p align="center">
+    <img width="49%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/display3.png" alt="display"/>
+&nbsp;
+</p>
+
+</details>
 
 ### `Query 1` - Display of Car Category Queries
 
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/34b3ef7d-a215-4bc5-8035-a8235985ba06)
+<p align="center">
+    <img width="90%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/query1.png" alt="query"/>
+</p>
 
 ### `Query 2` - Display of Distributed Car By Supplier
 
-![image](https://github.com/2pa4ul2/Car-Link-Express/assets/95076322/0cf331a8-5517-4954-9a3c-c04d4e6d8887)
+<p align="center">
+    <img width="90%" src="https://github.com/2pa4ul2/Car-Link-Express/blob/main/assets/images/query2.png" alt="query"/>
+</p>
 
 
 <h5 align="center">Created By Paul Adrian Torres</h5>
