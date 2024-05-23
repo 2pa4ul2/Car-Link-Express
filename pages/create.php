@@ -75,7 +75,7 @@
                                     $stmt = $pdo -> prepare($query);
                                     $stmt -> execute();
                                     while($row = $stmt -> fetch()){
-                                        echo "<option value='" . $row['supplier_id'] . "'>" . $row['supplier_id'] . "</option>";
+                                        echo "<option value='" . $row['supplier_id'] . "'>" . $row['supplier_id'] . " - " . $row['supplier_name'] . "</option>";
                                     }
                                 ?>
                                 <option value="none"></option>
@@ -89,7 +89,7 @@
                                     $stmt = $pdo -> prepare($query);
                                     $stmt -> execute();
                                     while($row = $stmt -> fetch()){
-                                        echo "<option value='" . $row['category_id'] . "'>" . $row['category_id'] . "</option>";
+                                        echo "<option value='" . $row['category_id'] . "'>" . $row['category_id'] . " - " .$row['category_name'] . "</option>";
                                     }
                                 ?>
                                 <option value="none"></option>
